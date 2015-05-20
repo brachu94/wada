@@ -10,12 +10,14 @@ function Player(arguments) {
 	this.doMoveUp = false;
 	this.doMoveDown = false;
   this.doSpace = false;
+  this.doMove = true;
 	this.gameCtx = arguments.contexto;
 	this.imageObj = arguments.image;
 	
 }
 
 Player.prototype.tick = function() {
+	if (this.doMove==true) {
 	if ( this.doMoveLeft){
 		this.x -= this.desplazamiento;
 	}
@@ -31,13 +33,7 @@ Player.prototype.tick = function() {
 	if ( this.doMoveDown){
 		this.y += this.desplazamiento;
 	}
-  
-  if ( this.doSpace){
-    var positionJson = { x: this.x , y: this.y };
-    this.sendPosition(positionJson);
-    this.doSpace = false;
-  }
-
+ }else{}
 
 
 };
