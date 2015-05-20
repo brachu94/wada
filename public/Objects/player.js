@@ -1,11 +1,10 @@
-
 function Player(arguments) {
 
-	this.height = 50;
-	this.width = 50;
+	this.height = arguments.height;
+	this.width = arguments.width;
 	this.x = arguments.x;
 	this.y = arguments.y;
-	this.desplazamiento = arguments.ace;
+	this.desplazamiento = arguments.desplazamiento;
 	this.doMoveLeft = false;
 	this.doMoveRight = false;
 	this.doMoveUp = false;
