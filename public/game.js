@@ -7,11 +7,11 @@ function load() {
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext('2d');
     var fps = 40;
-	var imageObj = new Image();
+    var imageObj = new Image();
     var players = [];
     imageObj.src = 'http://cd1.dibujos.net/dibujos/pintados/2011008/9b6956528621eb4ad9be29f3eeb98610.png';
   
-    var currentPlayer = new Player({ contexto: ctx , image: imageObj, x:100, y:100 ,ace:5});
+    var currentPlayer = new Player({ contexto: ctx , image: imageObj, x:200, y:200 ,desplazamiento:5,height:50,width:50});
     var objeto2 = new rectangulo({width:300,height:300,x:300,y:300});
     currentPlayer.listenKeyBoardEvent();
 
@@ -31,19 +31,22 @@ function load() {
 
         if (hit(currentPlayer,objeto2)==false) {
 
-         ctx.clearRect(0, 0, canvas.width, canvas.height);
+           
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.strokeStyle = "#000";
-        ctx.strokeRect(300, 300, 300, 300);
+        ctx.strokeRect(300, 300, 290, 290);
         currentPlayer.tick();
         currentPlayer.draw();
 
         }else {
-          
-              currentPlayer.tick();
+                currentPlayer.tick();
                 currentPlayer.draw();
-                ctx.clearRect(300,300, 300, 300);
+                currentPlayer.desplazamiento=0;
+                
+                 
 
-           
+                //currentPlayer.draw();
+                //ctx.clearRect(300,300, 300, 300);
 
         }
        
@@ -63,34 +66,16 @@ function load() {
 
  
 function hit(a,b){
+   var hit = false;
 
-    var hit = false;
+    if (a.x < b.x + b.width  && a.x + a.width  > b.x &&
+        a.y < b.y + b.height && a.y + a.height > b.y) {
+        hit = true;
+    
 
-    if (b.x+b.width >= a.x && b.x <= a.x + a.width) {
-        if (b.y +b.height >= a.y && b.y <= a.x + a.height) {
-            ace=0;
-            hit = true;
-        }
-    }
-
-
-       if (b.x <= a.x && b.x +b.width >= a.x + a.width) {
-            if (b.y >= a.y && b.y +b.height >= a.y + a.height ) {
-                hit = true;
-                ace=0;
-            }
-        } 
-
-    if (a.x <= b.x && a.x +a.width >= b.x + b.width) {
-            if (a.y >= b.y && a.y +a.height >= b.y + b.height ) {
-                hit = true;
-                ace=0;
-            }
-        } 
-
-
-
-    return hit;
+// The objects are touching
+}
+ return hit;
 }
 
 }
