@@ -9,15 +9,13 @@ function Player(arguments) {
 	this.doMoveRight = false;
 	this.doMoveUp = false;
 	this.doMoveDown = false;
-  this.doSpace = false;
-  this.doMove = true;
+  	this.doSpace = false;
 	this.gameCtx = arguments.contexto;
 	this.imageObj = arguments.image;
 	
 }
 
 Player.prototype.tick = function() {
-	if (this.doMove==true) {
 	if ( this.doMoveLeft){
 		this.x -= this.desplazamiento;
 	}
@@ -33,35 +31,13 @@ Player.prototype.tick = function() {
 	if ( this.doMoveDown){
 		this.y += this.desplazamiento;
 	}
- }else{}
-
-
 };
-
-
 
 
 Player.prototype.draw = function() {
 	//this.gameCtx.drawImage(this.imageObj, this.x, this.y, this.width, this.height);
-	
-
-		this.gameCtx.fillRect( this.x, this.y, this.width, this.height);
-
-
+	this.gameCtx.fillRect( this.x, this.y, this.width, this.height);
 };
-
-
-/*
-* Socket Player Events
-*/
-
-Player.prototype.sendPosition = function(position){
-  socket.emit("calcularPosition", position);  
-};
-
-
-
-
 
 /*
 * Set event keyboard listener
